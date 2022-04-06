@@ -116,9 +116,7 @@ function Home() {
     
   );
 }
-function convertTZ(date, tzString) {
-  return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
-}
+
 function Urls({ token, urls }) {
   async function handleDelete(id) {
     try {
@@ -138,7 +136,7 @@ function Urls({ token, urls }) {
           <Flex justifyContent="space-between" alignItems="center" gap="75px">
             <UrlLink color="#FFF" fontWeight="400">{url.os}</UrlLink>
             <UrlLink color="#FFF" fontWeight="400">{url.model}</UrlLink>
-            <Span color="#FFF" fontWeight="400"> Horário: {convertTZ(url.datetime,'São Paulo/Brazil')}</Span>
+            <Span color="#FFF" fontWeight="400"> Horário: {url.datetime}</Span>
           </Flex>
           <DeleteButton onClick={() => handleDelete(url.id)}>
             <DeleteIcon />
