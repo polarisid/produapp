@@ -55,7 +55,7 @@ async function deleteItem(token, id) {
 }
 
 async function getRank(){
-  const rank = await axios.get(`${BASE_URL}/rank`);
+  const rank = await axios.get(`http://produapp.herokuapp.com/rank`);
   return rank.data;
 }
 

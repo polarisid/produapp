@@ -123,6 +123,7 @@ function Home() {
             onChange={e => setForm({...form,'os':e.target.value})} 
             placeholder='OS'
             required
+            type='number'
             />  
           <Input 
             value={form.model} 
