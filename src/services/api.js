@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://hidden-mesa-58705.herokuapp.com/http://produapp.herokuapp.com';
-// const BASE_URL = 'http://localhost:5000';
+// const BASE_URL = 'https://hidden-mesa-58705.herokuapp.com/http://produapp.herokuapp.com';
+const BASE_URL = 'http://localhost:5000';
 
 function createConfig(token) {
   return {
@@ -41,6 +41,12 @@ async function getItems(token, form) {
   const items = await axios.get(`${BASE_URL}/forms`, config);
   return items.data;
 }
+async function getItemsFiltered(token, form) {
+  const config = createConfig(token);
+console.log(form)
+  const items = await axios.get(`${BASE_URL}/forms?datestart=${form.datestart}&dateend=${form.dateend}&type=${form.type}`, config);
+  return items.data;
+}
 
 async function deleteItem(token, id) {
   const config = createConfig(token);
@@ -54,6 +60,7 @@ async function getRank(){
 }
 
 const api = {
+  getItemsFiltered,
   createUser,
   login,
   getUser,

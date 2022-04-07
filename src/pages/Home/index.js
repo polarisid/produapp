@@ -168,7 +168,7 @@ function Urls({ token, urls ,setReload}) {
           <Flex justifyContent="space-between" alignItems="center" gap="75px">
             <UrlLink color="#FFF" fontWeight="400">{url.os}</UrlLink>
             <UrlLink color="#FFF" fontWeight="400">{url.model}</UrlLink>
-            {/* <UrlLink color="#FFF" fontWeight="400">{myOptions[url.typeId-1].label}</UrlLink> */}
+            <UrlLink color="#FFF" fontWeight="400">{myOptions[url.typeId-1].label}</UrlLink>
             <Span color="#FFF" fontWeight="400"> Horário: {url.datetime}</Span>
           </Flex>
           <DeleteButton onClick={() => handleDelete(url.id)}>
