@@ -51,7 +51,7 @@ const Input = styled.input`
 
   color: #000;
   background: #FFFFFF;
-  padding: 21px;
+  padding: 10px;
   border: 1px solid rgba(120, 177, 89, 0.25);
   border-radius: 12px;
   box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
@@ -78,7 +78,7 @@ const Button = styled.button`
   
   text-align: center;
 
-  padding: 21px;
+  padding: 10px;
   
   background: #5D9040;
   border-radius: 12px;

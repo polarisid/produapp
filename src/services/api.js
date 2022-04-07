@@ -48,13 +48,19 @@ async function deleteItem(token, id) {
   await axios.delete(`${BASE_URL}/forms/${id}`, config);
 }
 
+async function getRank(){
+  const rank = await axios.get(`${BASE_URL}/rank`);
+  return rank.data;
+}
+
 const api = {
   createUser,
   login,
   getUser,
   sendForm,
   deleteItem,
-  getItems
+  getItems,
+  getRank
 }
 
 export default api;

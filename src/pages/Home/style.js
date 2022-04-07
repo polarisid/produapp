@@ -28,6 +28,40 @@ const SelectedStyled = styled(Select)`
   box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
   box-sizing: border-box;
 `
+const RankBox = styled.div`
+align-self: left ;
+width: 100%;
+margin: 20px 0px; 
+caption {
+  font-weight: bold;
+  font-size: 24px;
+  text-align: left;
+  color: #333;
+  margin-bottom: 16px;
+}
+thead {
+  background-color: #333;
+  color: white;
+}
+tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #eee;
+}
+table, th, td {
+  border: 1px solid rgba(120, 177, 89, 0.25);
+  padding: 5px;
+  /* border-collapse: collapse; */
+  th{
+    width: 100px;
+  }
+  td {
+  text-align: center;
+}
+}
+`;
 const Flex = styled.div`
   display: flex;
   flex-direction: ${(props) => props.direction || 'initial'};
@@ -107,7 +141,6 @@ const Url = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-
   background: #80CC74;
   box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
   border: 1px solid rgba(120, 177, 89, 0.25);
@@ -124,5 +157,6 @@ export {
   Title,
   DeleteButton,
   Url,
-  UrlLink
+  UrlLink,
+  RankBox
 };

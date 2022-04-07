@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from '../../assets/Logo.svg';
 import { Button, Input,Form2 } from '../../components/FormComponents';
 import useAuth from '../../hooks/useAuth';
 import api from '../../services/api';
-import { Container, DeleteButton, Flex, Span, StyledLink, Title, Url, UrlLink,SelectedStyled } from './style';
+import { Container, DeleteButton, Flex, Span, StyledLink, Title, Url, UrlLink,SelectedStyled,RankBox } from './style';
 import { useNavigate } from "react-router-dom";
 
 
@@ -24,6 +24,7 @@ function Home() {
   const { auth } = useAuth();
   const [form, setForm] = useState('');
   const [item, setItems] = useState('');
+  const [rank, setRank] = useState('');
   async function handleShortenButtonClick(e) {
     e.preventDefault();
     if (!auth) {
@@ -41,7 +42,7 @@ function Home() {
   }
   useEffect(() => {
     if (!reload) return;
-
+    
     async function loadPage() {
       setReload(false);
       if (!auth) {
@@ -50,14 +51,16 @@ function Home() {
   
       try {
         const { data } = await api.getUser(auth);
+        const rank = await api.getRank();
         const items = await api.getItems(auth);
         console.log(items);
         setItems(items);
         setUser(data);
+        setRank(rank)
       } catch (error) {
         console.log(error);
         alert("Erro, recarregue a página em alguns segundos");
-        
+        navigate('/login')
         setUser({});
       }
     }
@@ -76,13 +79,42 @@ function Home() {
         alignItems="center" 
         alignSelf="flex-end"
       >
-        <StyledLink to="/login" active="true">Minha produtividade</StyledLink>
+        <StyledLink to="/user" active="true">Minha produtividade</StyledLink>
         {/* <StyledLink>Sair</StyledLink> */}
       </Flex>
-      <Title>
+      {/* <Title>
         ProduApp
         <Logo/>
-      </Title>
+      </Title> */}
+      <RankBox>
+        <caption>RankDay</caption>
+        <table>
+        <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Avaliação + Trocas + Av. e Trocas </th>
+          {/* <th>Trocas</th>
+          <th>Av.e Trocas</th> */}
+        </tr>
+        </thead>
+        <tbody>
+        {/* <tr> */}
+          {rank.map(item => (
+          <tr>
+            <th>{item.name}</th>
+            <th>{item.count}</th>
+          </tr>
+          ))}
+          {/* <th>Bill Gates</th>
+          <td>555</td>
+          <td>555</td>
+          <td>555</td> */}
+        {/* </tr> */}
+        </tbody>
+      </table>
+      </RankBox>
+
+
       <Flex direction="column" alignItems="center" width="1018px">
         <Flex width="70%" gap="10px">
           <Form2 onSubmit={handleShortenButtonClick}>
@@ -108,8 +140,8 @@ function Home() {
 
 
         </Flex>
-       
-        {user && <Urls token={auth} urls={item} />}
+
+        {user && <Urls token={auth} urls={item} setReload={setReload} />}
       </Flex>
       <footer>powered by Daniel</footer>
     </Container>
@@ -117,11 +149,11 @@ function Home() {
   );
 }
 
-function Urls({ token, urls }) {
+function Urls({ token, urls ,setReload}) {
   async function handleDelete(id) {
     try {
       await api.deleteItem(token, id)
-      
+      setReload(true);
     } catch (error) {
       console.log(error);
       alert("Erro, recarregue a página em alguns segundos");
@@ -129,13 +161,14 @@ function Urls({ token, urls }) {
   }
 
   return (
-    <Flex width="100%" margin="58px 0px 0px 0px" direction="column" gap="40px">
+    <Flex width="100%" margin="10px 0px 0px 0px" direction="column" gap="10px">
        <h2>Ultimas adicionadas</h2>
       {urls.map(url => (
         <Url key={url.id}>
           <Flex justifyContent="space-between" alignItems="center" gap="75px">
             <UrlLink color="#FFF" fontWeight="400">{url.os}</UrlLink>
             <UrlLink color="#FFF" fontWeight="400">{url.model}</UrlLink>
+            {/* <UrlLink color="#FFF" fontWeight="400">{myOptions[url.typeId-1].label}</UrlLink> */}
             <Span color="#FFF" fontWeight="400"> Horário: {url.datetime}</Span>
           </Flex>
           <DeleteButton onClick={() => handleDelete(url.id)}>
