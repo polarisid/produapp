@@ -86,7 +86,7 @@ function Home() {
         ProduApp
         <Logo/>
       </Title> */}
-      <RankBox>
+      {rank&&<RankBox>
         <caption>RankDay</caption>
         <table>
         <thead>
@@ -112,7 +112,7 @@ function Home() {
         {/* </tr> */}
         </tbody>
       </table>
-      </RankBox>
+      </RankBox>}
 
 
       <Flex direction="column" alignItems="center" width="1018px">
