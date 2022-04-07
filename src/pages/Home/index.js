@@ -51,12 +51,12 @@ function Home() {
   
       try {
         const { data } = await api.getUser(auth);
-        const rank = await api.getRank();
+        const rank1= await api.getRank();
         const items = await api.getItems(auth);
         console.log(items);
         setItems(items);
         setUser(data);
-        setRank(rank)
+        setRank(rank1)
       } catch (error) {
         console.log(error);
         alert("Erro, recarregue a página em alguns segundos");
@@ -66,7 +66,7 @@ function Home() {
     }
 
     loadPage();
-  }, [auth, reload])
+  }, [auth, reload,rank])
 
   if (auth && !user) {
     return <h2>Carregando...</h2>
