@@ -8,7 +8,8 @@ import {DeleteButton, Flex, Span, StyledLink, Title, Url, UrlLink,RankBox } from
 // import { Container, DeleteButton, Flex, Span, StyledLink, Title, Url, UrlLink,SelectedStyled } from './style';
 import {SelectedStyled,Container,Form,Table } from './style';
 import { useNavigate } from "react-router-dom";
-
+import {Topbar} from '../../components/TopBar';
+import dayjs from 'dayjs';
 const myOptions = [
   { value: '1', label: 'Troca' },
   { value: '2', label: 'Avaliação' },
@@ -75,41 +76,45 @@ function User(){
 
 
     return (
+      <>
+        <Topbar/>
         <Container>
-            
-            <div>
-                <h1>Resumo</h1>
-                <h2>Total de Avaliação: 500</h2>
-                <h2>Total de Trocas: 100</h2>
-                <h2>Total de Avaliação e Trocas: 100</h2>
-            </div>
-            <Form onSubmit={handleChange}>
-            <SelectedStyled 
-                onChange={e => {setForm({...form,type:e.value});console.log(form)}}
-                options={myOptionsType} 
-                required
-            />
-            <Input
-                onChange={e => {setForm({...form,datestart:e.target.value});console.log(form)}}
-                value={form.datestart}
-                data-date-format="DD-MM-YYYY"
-                placeholder='Data inicio'
-                options={myOptionsType}
-                type='date'
-                
-            />
-            <Input
-                onChange={e => {setForm({...form,dateend:e.target.value});console.log(e.target.value)}}
-                value = {form.dateend}
-                placeholder='data Fim'
-                options={myOptionsType}
-                type='date'
-                
-            />
-            <Button type =  'submit'>Buscar</Button>
-            </Form>
-            {item&&<Urls token={auth} urls={item} setReload={setReload} />}
+          
+          <div>
+              <h1>Resumo</h1>
+              <h2>Total de Avaliação: 500</h2>
+              <h2>Total de Trocas: 100</h2>
+              <h2>Total de Avaliação e Trocas: 100</h2>
+          </div>
+          <Form onSubmit={handleChange}>
+          <SelectedStyled 
+              onChange={e => {setForm({...form,type:e.value});console.log(form)}}
+              options={myOptionsType} 
+              required
+          />
+          <Input
+              onChange={e => {setForm({...form,datestart:e.target.value});console.log(form)}}
+              value={form.datestart}
+              data-date-format="DD-MM-YYYY"
+              placeholder='Data inicio'
+              options={myOptionsType}
+              type='date'
+              
+          />
+          <Input
+              onChange={e => {setForm({...form,dateend:e.target.value});console.log(e.target.value)}}
+              value = {form.dateend}
+              placeholder='data Fim'
+              options={myOptionsType}
+              type='date'
+              
+          />
+          <Button type =  'submit'>Buscar</Button>
+          </Form>
+          {item&&<Urls token={auth} urls={item} setReload={setReload} />}
         </Container>
+      </>
+
     ) 
 
 }
@@ -133,7 +138,7 @@ function Urls({ token, urls ,setReload}) {
             <UrlLink color="#FFF" fontWeight="400">{url.os}</UrlLink>
             <UrlLink color="#FFF" fontWeight="400">{url.model}</UrlLink>
             <UrlLink color="#FFF" fontWeight="400">{myOptions[url.typeId-1].label}</UrlLink>
-            <Span color="#FFF" fontWeight="400"> Horário: {url.datetime}</Span>
+            <Span color="#FFF" fontWeight="400"> Horário: {dayjs(url.datetime).format('DD/MM HH:mm')}</Span>
           </Flex>
           <DeleteButton onClick={() => handleDelete(url.id)}>
             <DeleteIcon />

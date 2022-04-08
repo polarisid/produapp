@@ -28,17 +28,18 @@ const Form = styled.form`
 `;
 
 const Form2= styled.form`
+box-sizing: border-box;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 10px;
-
   margin-bottom: 30px;
 
   @media (max-width: 700px) {
-    width: 100%;
+    width: 50%;
+    flex-direction: column;
   }
 `;
 

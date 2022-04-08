@@ -30,7 +30,7 @@ const SelectedStyled = styled(Select)`
 `
 const RankBox = styled.div`
 align-self: left ;
-width: 100%;
+width: 40%;
 margin: 20px 0px; 
 caption {
   font-weight: bold;

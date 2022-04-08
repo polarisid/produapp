@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { ReactComponent as DeleteIcon } from '../../assets/DeleteIcon.svg';
 import { ReactComponent as Logo } from '../../assets/Logo.svg';
-import { Button, Input,Form2 } from '../../components/FormComponents';
+import { Button, Input,Form2, Form } from '../../components/FormComponents';
 import useAuth from '../../hooks/useAuth';
 import api from '../../services/api';
 import { Container, DeleteButton, Flex, Span, StyledLink, Title, Url, UrlLink,SelectedStyled,RankBox } from './style';
 import { useNavigate } from "react-router-dom";
-
+import {Topbar} from '../../components/TopBar';
+import dayjs from 'dayjs';
 
 const myOptions = [
   { value: '1', label: 'Troca' },
@@ -73,51 +74,32 @@ function Home() {
   }
 
   return (
-    <Container padding="10px 70px 0px 70px">
-      <Flex 
-        direction="row" 
-        alignItems="center" 
-        alignSelf="flex-end"
-      >
-        <StyledLink to="/user" active="true">Minha produtividade</StyledLink>
-        {/* <StyledLink>Sair</StyledLink> */}
-      </Flex>
-      {/* <Title>
-        ProduApp
-        <Logo/>
-      </Title> */}
-      {rank&&<RankBox>
-        <caption>RankDay</caption>
-        <table>
-        <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Avaliação + Trocas + Av. e Trocas </th>
-          {/* <th>Trocas</th>
-          <th>Av.e Trocas</th> */}
-        </tr>
-        </thead>
-        <tbody>
-        {/* <tr> */}
-          {rank.map(item => (
+    <>
+    <Topbar/>
+    <Container padding="40px 70px 0px 70px">
+      <Flex>
+      {rank&&
+      <RankBox>
+          <caption>RankDay</caption>
+          <table>
+          <thead>
           <tr>
-            <th>{item.name}</th>
-            <th>{item.count}</th>
+            <th>Nome</th>
+            <th>Soma</th>
           </tr>
-          ))}
-          {/* <th>Bill Gates</th>
-          <td>555</td>
-          <td>555</td>
-          <td>555</td> */}
-        {/* </tr> */}
-        </tbody>
-      </table>
-      </RankBox>}
-
-
-      <Flex direction="column" alignItems="center" width="1018px">
-        <Flex width="70%" gap="10px">
-          <Form2 onSubmit={handleShortenButtonClick}>
+          </thead>
+          <tbody>
+            {rank.map(item => (
+            <tr>
+              <th>{item.name}</th>
+              <th>{item.count}</th>
+            </tr>
+            ))}
+          </tbody>
+        </table>
+      </RankBox>
+      }
+      <Form2 onSubmit={handleShortenButtonClick}>
           <Input 
             value={form.os} 
             onChange={e => setForm({...form,'os':e.target.value})} 
@@ -130,22 +112,27 @@ function Home() {
             onChange={e => setForm({...form,'model':e.target.value})} 
             placeholder='Modelo' 
             required
-            /> 
+            />  
             <SelectedStyled 
               onChange={e => {setForm({...form,type:e.value});console.log(form)}}
               options={myOptions} 
               required
               />
           <Button type ='submit'  maxWidth="182px">Adicionar</Button>
-          </Form2>
+      </Form2>
 
-
-        </Flex>
-
-        {user && <Urls token={auth} urls={item} setReload={setReload} />}
       </Flex>
+
+      {/* <Flex direction="column" alignItems="center" width="1018px">
+        <Flex width="70%" gap="10px">
+          
+        </Flex>
+        
+      </Flex> */}
+      {user && <Urls token={auth} urls={item} setReload={setReload} />}
       <footer>powered by Daniel</footer>
     </Container>
+    </>
     
   );
 }
@@ -170,7 +157,7 @@ function Urls({ token, urls ,setReload}) {
             <UrlLink color="#FFF" fontWeight="400">{url.os}</UrlLink>
             <UrlLink color="#FFF" fontWeight="400">{url.model}</UrlLink>
             <UrlLink color="#FFF" fontWeight="400">{myOptions[url.typeId-1].label}</UrlLink>
-            <Span color="#FFF" fontWeight="400"> Horário: {url.datetime}</Span>
+            <Span color="#FFF" fontWeight="400"> Horário: {dayjs(url.datetime).format('DD/MM HH:mm')}</Span>
           </Flex>
           <DeleteButton onClick={() => handleDelete(url.id)}>
             <DeleteIcon />

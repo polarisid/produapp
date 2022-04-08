@@ -35,6 +35,7 @@ const Container = styled.div`
   margin: ${(props) => props.margin || '0px'};
   padding: ${(props) => props.padding || '0px'};
   border-radius: ${(props) => props.borderRadius || '0px'};
+  padding-top:50px;
 `;
 
 
