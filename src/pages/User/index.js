@@ -10,6 +10,8 @@ import {SelectedStyled,Container,Form,Table } from './style';
 import { useNavigate } from "react-router-dom";
 import {Topbar} from '../../components/TopBar';
 import dayjs from 'dayjs';
+
+
 const myOptions = [
   { value: '1', label: 'Troca' },
   { value: '2', label: 'Avaliação' },
@@ -26,6 +28,14 @@ function User(){
     const { auth } = useAuth();
     const [form, setForm] = useState('');
     const [item, setItems] = useState('');
+    const [resumes, setResumes] = useState(
+      { 	"Trocas": "Não Apurado",
+      "Avaliações": "Não Apurado",
+      "Avaliação e troca": "Não Apurado",
+      "Fechamento": "Não Apurado",
+      "NPC s/ OS": "Não Apurado",
+      "SW": "Não Apurado"}
+    );
 
     const myOptionsType = [
         { value: '1', label: 'Troca' },
@@ -55,9 +65,11 @@ function User(){
   
       try {
         const { data } = await api.getUser(auth);
+        const resume = await api.getResume(auth);
         // const items = await api.getItems(auth);
         // console.log(items);
-        // setItems(items);
+        // setItems(items);]
+        setResumes(resume);
         setUser(data);
       } catch (error) {
         console.log(error);
@@ -80,12 +92,17 @@ function User(){
         <Topbar/>
         <Container>
           
+           
           <div>
               <h1>Resumo</h1>
-              <h2>Total de Avaliação: 500</h2>
-              <h2>Total de Trocas: 100</h2>
-              <h2>Total de Avaliação e Trocas: 100</h2>
+              <h2>Total de Trocas: {resumes.Trocas}</h2>
+              <h2>Total de Trocas: {resumes.Avaliações}</h2>
+              <h2>Total de Av. e Trocas: {resumes['Avaliação e troca']}</h2>
+              <h2>Total de Fechamento: {resumes.Fechamento}</h2>
+              <h2>Total de NPC s/ OS: {resumes['NPC s/ OS']}</h2>
+              <h2>Total de SW: {resumes.SW}</h2>
           </div>
+          
           <Form onSubmit={handleChange}>
           <SelectedStyled 
               onChange={e => {setForm({...form,type:e.value});console.log(form)}}

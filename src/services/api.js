@@ -61,9 +61,14 @@ async function getRank(){
 
   return rank.data;
 }
-
+async function getResume(token){
+  const config = createConfig(token);
+  const resume = await axios.get(`${BASE_URL}/resume`, config);
+  return resume.data;
+}
 const api = {
   getItemsFiltered,
+  getResume,
   createUser,
   login,
   getUser,
