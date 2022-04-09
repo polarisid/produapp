@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Button, Container, Form, Input, StyledLink } from '../../components/FormComponents';
 import api from '../../services/api';
-
+import {Title}  from '../Home/style'
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -39,6 +39,8 @@ function SignUp() {
 
   return (
     <Container>
+      <Title>ProduApp</Title>
+
       <Form onSubmit={handleSubmit}>
         <Input
           placeholder="Nome"

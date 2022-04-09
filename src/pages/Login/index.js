@@ -1,17 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { Button, Container, Form, Input, StyledLink } from '../../components/FormComponents';
 import useAuth from '../../hooks/useAuth';
 import api from '../../services/api';
-
+import {Title} from '../Home/style'
 
 function Login() {
+  const { auth,login } = useAuth();
+  const navigation = useNavigate();
+  const navigate =useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-  const { login } = useAuth();
-  const navigation = useNavigate();
+   useEffect(() => {
+    async function verificarLogin() {
+      try{
+      if (auth) {
+        const { data } = await api.getUser(auth);
+        if(data){
+          navigate('/home');
+        }
+        else{
+          return;
+        }
+      }
+      }catch (error) {
+      console.log(error);
+      alert("Erro, recarregue a página em alguns segundos");
+      }}
+      verificarLogin();
+  })
+
 
   function handleChange({ target }) {
     setFormData({ ...formData, [target.name]: target.value });
@@ -34,6 +54,7 @@ function Login() {
 
   return (
     <Container>
+      <Title>ProduApp</Title>
       <Form onSubmit={handleSubmit}>
         <Input
           placeholder="E-mail"
