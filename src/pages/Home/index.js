@@ -122,13 +122,6 @@ function Home() {
       </Form2>
 
       </Flex>
-
-      {/* <Flex direction="column" alignItems="center" width="1018px">
-        <Flex width="70%" gap="10px">
-          
-        </Flex>
-        
-      </Flex> */}
       {user && <Urls token={auth} urls={item} setReload={setReload} />}
       <footer>powered by Daniel</footer>
     </Container>

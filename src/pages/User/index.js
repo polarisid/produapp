@@ -6,8 +6,9 @@ import useAuth from '../../hooks/useAuth';
 import api from '../../services/api';
 import {DeleteButton, Flex, Span, StyledLink, Title, Url, UrlLink,RankBox } from '../Home/style';
 // import { Container, DeleteButton, Flex, Span, StyledLink, Title, Url, UrlLink,SelectedStyled } from './style';
-import {SelectedStyled,Container,Form,Table } from './style';
+import {SelectedStyled,Container,Form,Table,Resume } from './style';
 import { useNavigate } from "react-router-dom";
+
 import {Topbar} from '../../components/TopBar';
 import dayjs from 'dayjs';
 
@@ -92,16 +93,35 @@ function User(){
         <Topbar/>
         <Container>
           
-           
-          <div>
-              <h1>Resumo</h1>
-              <h2>Total de Trocas: {resumes.Trocas}</h2>
-              <h2>Total de Trocas: {resumes.Avaliações}</h2>
-              <h2>Total de Av. e Trocas: {resumes['Avaliação e troca']}</h2>
-              <h2>Total de Fechamento: {resumes.Fechamento}</h2>
-              <h2>Total de NPC s/ OS: {resumes['NPC s/ OS']}</h2>
-              <h2>Total de SW: {resumes.SW}</h2>
-          </div>
+            
+          <Resume>
+            <RankBox>
+            <caption>Totalidade</caption>
+            <table>
+              <thead>
+              <tr>
+                <th>Trocas</th>
+                <th>Avaliações</th>
+                <th>Avaliações e Trocas</th>
+                <th>Fechamento</th>
+                <th>NPC s/ OS</th>
+                <th>SW</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>{resumes.Trocas}</th>
+                  <th>{resumes.Avaliações}</th>
+                  <th>{resumes['Avaliação e troca']}</th>
+                  <th>{resumes.Fechamento}</th>
+                  <th>{resumes['NPC s/ OS']}</th>
+                  <th>{resumes.SW}</th>
+                </tr>
+               
+              </tbody>
+            </table>
+            </RankBox>
+          </Resume>
           
           <Form onSubmit={handleChange}>
           <SelectedStyled 

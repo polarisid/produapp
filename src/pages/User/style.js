@@ -14,7 +14,13 @@ const SelectedStyled = styled(Select)`
   box-sizing: border-box;
 `
 
+const Resume = styled.div`
+width: 100%;
+display : flex;
+align-items: center;
+justify-content: center;
 
+`
 const Form = styled.form`
 display : flex;
 width: 70%;
@@ -42,5 +48,6 @@ const Container = styled.div`
 export {
     SelectedStyled,
     Container,
-    Form
+    Form,
+    Resume
 };
