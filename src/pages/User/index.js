@@ -168,14 +168,15 @@ function Urls({ token, urls ,setReload}) {
 
   return (
     <Flex width="100%" margin="10px 0px 0px 0px" direction="column" gap="10px">
-       <h2>Resultado</h2>
+       <h2>Resultado encontrados : {urls.length}</h2>
       {urls.map(url => (
         <Url key={url.id}>
-          <Flex justifyContent="space-between" alignItems="center" gap="75px">
+          <Flex justifyContent="space-between" alignItems="center" gap="75px" width="100%">
             <UrlLink color="#FFF" fontWeight="400">{url.os}</UrlLink>
             <UrlLink color="#FFF" fontWeight="400">{url.model}</UrlLink>
             <UrlLink color="#FFF" fontWeight="400">{myOptions[url.typeId-1].label}</UrlLink>
-            <Span color="#FFF" fontWeight="400"> Horário: {dayjs(url.datetime).format('DD/MM HH:mm')}</Span>
+            <UrlLink color="#FFF" fontWeight="400"> Horário: {dayjs(url.datetime).format('HH:mm')}</UrlLink>
+            <UrlLink color="#FFF" fontWeight="400"> Data: {dayjs(url.datetime).format('DD/MM')}</UrlLink>
           </Flex>
           {/* <DeleteButton onClick={() => handleDelete(url.id)}>
             <DeleteIcon />
