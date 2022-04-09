@@ -129,8 +129,9 @@ const Span = styled.span`
 
 const UrlLink = styled.a` 
   font-style: normal;
+  width: 25%;
   font-weight: ${(props) => props.fontWeight || 'initial'};
-  font-size: 14px;
+  font-size: 15px;
   line-height: 18px;
   text-align: ${(props) => props.align || "initial"};
 
