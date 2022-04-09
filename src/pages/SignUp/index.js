@@ -76,7 +76,6 @@ function SignUp() {
         />
         <Button type="submit">Cadastrar</Button>
       </Form>
-      <StyledLink to="/">Já tem uma conta? Entre agora!</StyledLink>
     </Container>
   );
 }

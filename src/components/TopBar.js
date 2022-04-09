@@ -1,10 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
+import useAuth from '../hooks/useAuth';
 
 export  function Topbar(){
-    const navigate =useNavigate();
+    const { logout} = useAuth();
 
+    const navigate =useNavigate();
+    function sair(){
+        logout();
+        navigate('/');
+    }
     return(
         <Container>
             <div className="topbar__logo">
@@ -14,7 +20,7 @@ export  function Topbar(){
                 
                     <span onClick={()=>navigate('/home')}>Home</span>
                     <span onClick={()=>navigate('/user')}>Perfil</span>
-                    <span>Logout</span>
+                    <span onClick={sair}>Logout</span>
                         
             </div>
         </Container>
