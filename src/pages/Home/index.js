@@ -47,7 +47,7 @@ function Home() {
     async function loadPage() {
       setReload(false);
       if (!auth) {
-        return  navigate('/login');
+        return  navigate('/');
       }
   
       try {
@@ -61,7 +61,7 @@ function Home() {
       } catch (error) {
         console.log(error);
         alert("Erro, recarregue a página em alguns segundos");
-        navigate('/login')
+        navigate('/')
         setUser({});
       }
     }

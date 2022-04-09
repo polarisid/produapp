@@ -61,7 +61,7 @@ function User(){
     async function loadPage() {
       setReload(false);
       if (!auth) {
-        return  navigate('/login');
+        return  navigate('/');
       }
   
       try {
@@ -75,7 +75,7 @@ function User(){
       } catch (error) {
         console.log(error);
         alert("Erro, recarregue a página em alguns segundos");
-        navigate('/login')
+        navigate('/')
         setUser({});
       }}
     
