@@ -31,6 +31,7 @@ async function getAdminResume(token){
 async function getAdminResumeByDate(token, dateStart,dateEnd){
   const config = createConfig(token);
   const resume = await axios.get(`http://produapp.herokuapp.com/admin/bydate?startDate=${dateStart}&endDate=${dateEnd}`, config);
+  console.log(resume.data)
   return resume.data;
 }
 

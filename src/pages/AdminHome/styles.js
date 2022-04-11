@@ -98,7 +98,7 @@ const DeleteButton = styled.button`
   background: #FFF;
   border-radius: 0px 12px 12px 0px;
 `;
-const Form= styled.div`
+const Form= styled.form`
 width: 100%;
 display: flex;
 align-items: center;

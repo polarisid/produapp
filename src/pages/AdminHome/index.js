@@ -37,7 +37,7 @@ function AdminHome() {
           }
         }
         loadPage();
-    }, [auth, reload])
+    }, [auth, reload]);
   
     if (auth && !users) {
       return <h2>Carregando...</h2>
@@ -45,7 +45,9 @@ function AdminHome() {
           
     async function handleChange(e) {
       e.preventDefault();
+      console.log("chegou aqui")
       const items = await api.getAdminResumeByDate(auth,form.datestart,form.dateend);
+      console.log(items)
       setResume(items);
     }
     
@@ -79,10 +81,10 @@ function AdminHome() {
                   type='date'
                   
               />
-              <button type = 'submit'>Buscar</button>
+              <button type="submit" >Buscar</button>
             </Form>
                 <RankBox>
-                <caption>Totalidade</caption>
+                {/* <caption>Totalidade</caption> */}
                 <table>
                   <thead>
                   <tr>
@@ -98,14 +100,14 @@ function AdminHome() {
                   <tbody>
                 {resume && resume.map((resume,i) => 
 
-                    <tr>
-                        <td key={i}>{resume.name}</td>
-                        <th key={i}>{resume.Trocas}</th>
-                        <th key={i}>{resume.Avaliações}</th>
-                        <th key={i}>{resume['Avaliação e troca']}</th>
-                        <th key={i}>{resume.Fechamento}</th>
-                        <th key={i}>{resume['NPC s/ OS']}</th>
-                        <th key={i}>{resume.SW}</th>
+                    <tr key ={i}>
+                        <td>{resume.name}</td>
+                        <th>{resume.Trocas}</th>
+                        <th>{resume.Avaliações}</th>
+                        <th>{resume['Avaliação e troca']}</th>
+                        <th>{resume.Fechamento}</th>
+                        <th>{resume['NPC s/ OS']}</th>
+                        <th>{resume.SW}</th>
                     </tr>
                 )}
               </tbody>
