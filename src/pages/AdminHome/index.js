@@ -1,11 +1,11 @@
 import { ReactComponent as DeleteIcon } from '../../assets/DeleteIcon.svg';
-import { Container,DeleteButton,SelectedStyled} from './styles';
+import { Container,DeleteButton,SelectedStyled,RankBox,Form} from './styles';
 import {TopBarAdmin} from '../../components/TopBarAdmin';
 import api from '../../services/api';
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from "react-router-dom";
-import {RankBox} from '../Home/style';
+// import {RankBox} from '../Home/style';
 
 function AdminHome() {
     const { auth } = useAuth();
@@ -51,26 +51,51 @@ function AdminHome() {
     
 
     return(
-        <Container padding="50px 70px 0px 70px">
+      <>
+        <Container padding="60px 70px 0px 70px">
             <TopBarAdmin></TopBarAdmin>
             <h1>Bem vindo ao painel administrativo</h1>
             <div className="tecnicos">
-                <h2>Técnicos</h2>
+            <Form onSubmit={handleChange}>
+              {/* <SelectedStyled 
+                  // onChange={e => {setForm({...form,type:e.value});console.log(form)}}
+                  // options={myOptionsType} 
+                  required
+              /> */}
+              <label>Filtro</label>
+              <input
+                  onChange={e => {setForm({...form,datestart:e.target.value});console.log(form)}}
+                  value={form.datestart}
+                  data-date-format="DD-MM-YYYY"
+                  placeholder='Data inicio'
+                  // options={myOptionsType}
+                  type='date'
+                  
+              />
+              <input
+                  onChange={e => {setForm({...form,dateend:e.target.value});console.log(e.target.value)}}
+                  value = {form.dateend}
+                  placeholder='data Fim'
+                  type='date'
+                  
+              />
+              <button type = 'submit'>Buscar</button>
+            </Form>
                 <RankBox>
-            <caption>Totalidade</caption>
-            <table>
-              <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Trocas</th>
-                <th>Avaliações</th>
-                <th>Avaliações e Trocas</th>
-                <th>Fechamento</th>
-                <th>NPC s/ OS</th>
-                <th>SW</th>
-              </tr>
-              </thead>
-              <tbody>
+                <caption>Totalidade</caption>
+                <table>
+                  <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Trocas</th>
+                    <th>Avaliações</th>
+                    <th>Avaliações e Trocas</th>
+                    <th>Fechamento</th>
+                    <th>NPC s/ OS</th>
+                    <th>SW</th>
+                  </tr>
+                  </thead>
+                  <tbody>
                 {resume && resume.map((resume,i) => 
 
                     <tr>
@@ -88,33 +113,11 @@ function AdminHome() {
             </RankBox>
             </div>
             <div className="clientes">
-            <form onSubmit={handleChange}>
-              {/* <SelectedStyled 
-                  // onChange={e => {setForm({...form,type:e.value});console.log(form)}}
-                  // options={myOptionsType} 
-                  required
-              /> */}
-              <input
-                  onChange={e => {setForm({...form,datestart:e.target.value});console.log(form)}}
-                  value={form.datestart}
-                  data-date-format="DD-MM-YYYY"
-                  placeholder='Data inicio'
-                  // options={myOptionsType}
-                  type='date'
-                  
-              />
-              <input
-                  onChange={e => {setForm({...form,dateend:e.target.value});console.log(e.target.value)}}
-                  value = {form.dateend}
-                  placeholder='data Fim'
-                  type='date'
-                  
-              />
-              <button type =  'submit'>Buscar</button>
-            </form>
+
             </div>
             <footer> Saudades &#128540; Meiroca &#128525;</footer>
         </Container>
+         </>
     )
 }
 
