@@ -31,7 +31,7 @@ async function getAdminResume(token){
 
 async function getAdminResumeByDate(token, dateStart,dateEnd){
   const config = createConfig(token);
-  const resume = await axios.get(`http://produapp.herokuapp.com/admin/bydate?startDate=${dateStart}&endDate=${dateEnd}`, config);
+  const resume = await axios.get(`${BASE_URL}/admin/bydate?startDate=${dateStart}&endDate=${dateEnd}`, config);
   console.log(resume.data)
   return resume.data;
 }
@@ -86,7 +86,7 @@ async function getUsers(token){
 
 async function getRank(){
 
-  const rank = await axios.get(`https://produapp.herokuapp.com/rank`);
+  const rank = await axios.get(`${BASE_URL}/rank`);
 
 
   return rank.data;
