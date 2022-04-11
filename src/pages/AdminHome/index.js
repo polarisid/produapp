@@ -81,7 +81,7 @@ function AdminHome() {
                   type='date'
                   
               />
-              <button type="submit" >Buscar</button>
+              <button type="submitgit" >Buscar</button>
             </Form>
                 <RankBox>
                 {/* <caption>Totalidade</caption> */}
