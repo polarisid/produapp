@@ -115,7 +115,7 @@ function AdminHome() {
             <div className="clientes">
 
             </div>
-            <footer> Saudades &#128540; Meiroca &#128525;</footer>
+            
         </Container>
          </>
     )
