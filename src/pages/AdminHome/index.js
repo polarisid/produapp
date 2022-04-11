@@ -51,7 +51,20 @@ function AdminHome() {
       setResume(items);
     }
     
-
+    let totalTroca = 0;
+    let totalAvaliacao = 0;
+    let totalAvaliacaoTrocas = 0;
+    let totalFechamento = 0;
+    let totalNPC = 0;
+    let totalSW = 0;
+    let totalobj={
+      troca:0,
+      avaliacao:0,
+      avaliacaoTrocas:0,
+      fechamento:0,
+      npc:0,
+      sw:0
+    }
     return(
       <>
         <Container padding="60px 70px 0px 70px">
@@ -99,7 +112,6 @@ function AdminHome() {
                   </thead>
                   <tbody>
                 {resume && resume.map((resume,i) => 
-
                     <tr key ={i}>
                         <td>{resume.name}</td>
                         <th>{resume.Trocas}</th>
@@ -110,6 +122,25 @@ function AdminHome() {
                         <th>{resume.SW}</th>
                     </tr>
                 )}
+                 {resume && resume.map((resume,i) => 
+                    {totalobj.troca += parseInt(resume.Trocas);
+                    totalobj.avaliacao += parseInt(resume.Avaliações);
+                    totalobj.avaliacaoTrocas += parseInt(resume['Avaliação e troca']);
+                    totalobj.fechamento += parseInt(resume.Fechamento);
+                    totalobj.npc += parseInt(resume['NPC s/ OS']);
+                    totalobj.sw += parseInt(resume.SW);
+                    }
+                  )}
+                  
+                  <tr>
+                    <td>Total</td>
+                    <th>{totalobj.troca}</th>
+                    <th>{totalobj.avaliacao}</th>
+                    <th>{totalobj.avaliacaoTrocas}</th>
+                    <th>{totalobj.fechamento}</th>
+                    <th>{totalobj.npc}</th>
+                    <th>{totalobj.sw}</th>
+                  </tr>
               </tbody>
             </table>
             </RankBox>
@@ -117,6 +148,7 @@ function AdminHome() {
             <div className="clientes">
 
             </div>
+            <footer>powered by Daniel</footer>
             
         </Container>
          </>

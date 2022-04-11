@@ -40,11 +40,9 @@ export  function TopBarAdmin(){
                 <p>ProduApp</p>
             </div>
             <div className="topbar__menu">
-                
                     <span onClick={()=>navigate('/admin/home')}>Home</span>
                     <span onClick={()=>navigate('/user')}>Perfil</span>
                     <span onClick={sair}>Logout</span>
-                        
             </div>
         </Container>
     )
