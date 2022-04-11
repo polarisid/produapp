@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from '../../assets/Logo.svg';
 import { Button, Input,Form2, Form } from '../../components/FormComponents';
 import useAuth from '../../hooks/useAuth';
 import api from '../../services/api';
-import { Container, DeleteButton, Flex, Span, StyledLink, Title, Url, UrlLink,SelectedStyled,RankBox } from './style';
+import { Container, DeleteButton, Flex, Url, UrlLink,SelectedStyled,RankBox } from './style';
 import { useNavigate } from "react-router-dom";
 import {Topbar} from '../../components/TopBar';
 import dayjs from 'dayjs';

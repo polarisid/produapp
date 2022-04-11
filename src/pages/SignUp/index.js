@@ -3,7 +3,13 @@ import { useNavigate } from 'react-router';
 import { Button, Container, Form, Input, StyledLink } from '../../components/FormComponents';
 import api from '../../services/api';
 import {Title}  from '../Home/style'
+import {SelectedStyled} from './style'
 
+const myOptions = [
+  { value: '5286953', label: 'MSC SLZ' },
+  { value: '3198122', label: 'MSC THE' },
+  { value: '3886546', label: 'MSC AJU' },
+];
 function SignUp() {
   const [formData, setFormData] = useState({
     name: '',
@@ -74,6 +80,12 @@ function SignUp() {
           value={formData.confirmPassword}
           required
         />
+        {/* <SelectedStyled
+          name="asc" 
+          onChange={(e) => handleChange(e)}
+          options={myOptions} 
+          required
+        /> */}
         <Button type="submit">Cadastrar</Button>
       </Form>
     </Container>

@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import User from './pages/User';
+import AdminLogin from './pages/AdminLogin';
+import AdminHome from './pages/AdminHome';
 
 function App() {
   return (
@@ -15,6 +17,9 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/user" element={<User />} />
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/home" element={<AdminHome />} />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>

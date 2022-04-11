@@ -11,6 +11,28 @@ function createConfig(token) {
     }
   }
 }
+async function adminLogin(data) {
+  const token = await axios.post(`${BASE_URL}/admin/login`, data);
+  return token;
+}
+
+async function getUserAdmin(token) {
+  const config = createConfig(token);
+
+  const user = await axios.get(`${BASE_URL}/admin`, config);
+  return user;
+}
+async function getAdminResume(token){
+  const config = createConfig(token);
+  const resume = await axios.get(`${BASE_URL}/admin/resume`, config);
+  return resume.data;
+}
+
+async function getAdminResumeByDate(token, dateStart,dateEnd){
+  const config = createConfig(token);
+  const resume = await axios.get(`${BASE_URL}/admin/bydate?startDate=${dateStart}&endDate=${dateEnd}`, config);
+  return resume.data;
+}
 
 async function createUser(user) {
   await axios.post(`${BASE_URL}/users`, user);
@@ -54,6 +76,12 @@ async function deleteItem(token, id) {
   await axios.delete(`${BASE_URL}/forms/${id}`, config);
 }
 
+async function getUsers(token){
+  const config = createConfig(token);
+  const users = await axios.get(`${BASE_URL}/admin/users`);
+  return users.data;
+}
+
 async function getRank(){
 
   const rank = await axios.get(`https://produapp.herokuapp.com/rank`);
@@ -67,6 +95,11 @@ async function getResume(token){
   return resume.data;
 }
 const api = {
+  getAdminResumeByDate,
+  getAdminResume,
+  getUsers,
+  adminLogin,
+  getUserAdmin,
   getItemsFiltered,
   getResume,
   createUser,

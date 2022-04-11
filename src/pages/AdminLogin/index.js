@@ -5,7 +5,7 @@ import useAuth from '../../hooks/useAuth';
 import api from '../../services/api';
 import {Title} from '../Home/style'
 
-function Login() {
+function AdminLogin() {
   const { auth,login } = useAuth();
   const navigation = useNavigate();
   const navigate =useNavigate();
@@ -17,9 +17,9 @@ function Login() {
     async function verificarLogin() {
       try{
       if (auth) {
-        const { data } = await api.getUser(auth);
+        const { data } = await api.getUserAdmin(auth);
         if(data){
-          navigate('/home');
+          navigate('/admin/home');
         }
         else{
           return;
@@ -43,9 +43,9 @@ function Login() {
     const user = { ...formData };
 
     try {
-      const { data } = await api.login(user);
+      const { data } = await api.adminLogin(user);
       login(data);
-      navigation('/home');
+      navigation('/admin/home');
     } catch (error) { 
       console.log(error);
       alert("Email ou senha incorretos");
@@ -54,7 +54,7 @@ function Login() {
 
   return (
     <Container>
-      <Title>ProduApp</Title>
+      <Title>ProduApp Admin</Title>
       <Form onSubmit={handleSubmit}>
         <Input
           placeholder="E-mail"
@@ -74,9 +74,9 @@ function Login() {
         />
         <Button type="submit">Entrar</Button>
       </Form>
-      <StyledLink to="/admin">Você é um administrador? login Aqui!</StyledLink>
+      {/* <StyledLink to="/sign-up">Primeira vez? Cadastre-se!</StyledLink> */}
     </Container>
   );
 }
 
-export default Login;
+export default AdminLogin;

@@ -71,6 +71,11 @@ const Flex = styled.div`
   gap: ${(props) => props.gap || '0px'};
   width: ${(props) => props.width || 'initial'};
   margin: ${(props) => props.margin || 'initial'};
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+} 
+
 `;
 
 const StyledLink = styled(Link)`

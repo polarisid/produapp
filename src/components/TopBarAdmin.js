@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
 import useAuth from '../hooks/useAuth';
 import api from '../services/api';
-export  function Topbar(){
+export  function TopBarAdmin(){
     const { logout,auth} = useAuth();
     const [user, setUser] = useState(null);
 
@@ -41,7 +41,7 @@ export  function Topbar(){
             </div>
             <div className="topbar__menu">
                 
-                    <span onClick={()=>navigate('/home')}>Home</span>
+                    <span onClick={()=>navigate('/admin/home')}>Home</span>
                     <span onClick={()=>navigate('/user')}>Perfil</span>
                     <span onClick={sair}>Logout</span>
                         
@@ -58,7 +58,7 @@ align-items: center;
 justify-content: space-between;
 top: 0;
 width: 100%;
-background: #5D9040;
+background: #7E7E7E;
 
 p{
     color: #fff;

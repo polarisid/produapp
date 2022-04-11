@@ -88,11 +88,11 @@ const Button = styled.button`
 `;
 
 const StyledLink = styled(Link)`
-  all: unset;
+  /* all: unset; */
   box-sizing: border-box;
   cursor: pointer;
 
-  color: #FFF;
+  color: #000;
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
