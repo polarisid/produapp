@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp';
 import User from './pages/User';
 import AdminLogin from './pages/AdminLogin';
 import AdminHome from './pages/AdminHome';
+import PartsRequest from './pages/PartsRequest';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/user" element={<User />} />
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/home" element={<AdminHome />} />
+          <Route path="/user/request" element={<PartsRequest />} />
 
         </Routes>
       </BrowserRouter>

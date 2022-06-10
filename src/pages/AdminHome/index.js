@@ -1,11 +1,9 @@
-import { ReactComponent as DeleteIcon } from '../../assets/DeleteIcon.svg';
-import { Container,DeleteButton,SelectedStyled,RankBox,Form} from './styles';
+import { Container,RankBox,Form} from './styles';
 import {TopBarAdmin} from '../../components/TopBarAdmin';
 import api from '../../services/api';
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from "react-router-dom";
-// import {RankBox} from '../Home/style';
 
 function AdminHome() {
     const { auth } = useAuth();
@@ -15,12 +13,21 @@ function AdminHome() {
     const [form, setForm] = useState({datestart:'',dateend:''});
     const navigate =useNavigate();
 
+    let totalobj={
+      troca:0,
+      avaliacao:0,
+      avaliacaoTrocas:0,
+      fechamento:0,
+      npc:0,
+      sw:0
+    }
+
 
     useEffect(() => {
 
         async function loadPage() {
           if (!auth) {
-            return  navigate('/');
+            return  navigate('/admin');
           }
       
           try {
@@ -32,7 +39,7 @@ function AdminHome() {
           } catch (error) {
             console.log(error);
             alert("Erro, recarregue a página em alguns segundos");
-            navigate('/')
+            navigate('/admin')
             setUsers({});
           }
         }
@@ -51,20 +58,7 @@ function AdminHome() {
       setResume(items);
     }
     
-    let totalTroca = 0;
-    let totalAvaliacao = 0;
-    let totalAvaliacaoTrocas = 0;
-    let totalFechamento = 0;
-    let totalNPC = 0;
-    let totalSW = 0;
-    let totalobj={
-      troca:0,
-      avaliacao:0,
-      avaliacaoTrocas:0,
-      fechamento:0,
-      npc:0,
-      sw:0
-    }
+
     return(
       <>
         <Container padding="60px 70px 0px 70px">
@@ -97,7 +91,6 @@ function AdminHome() {
               <button type="submitgit" >Buscar</button>
             </Form>
                 <RankBox>
-                {/* <caption>Totalidade</caption> */}
                 <table>
                   <thead>
                   <tr>
